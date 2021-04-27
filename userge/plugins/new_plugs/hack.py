@@ -5,10 +5,10 @@ import asyncio
 from userge import userge
 
 
-@userge.on_cmd("hack$", about={'header': "kensar hacking animation"})
+@userge.on_cmd("hack$", about={"header": "kensar hacking animation"})
 async def hack_func(message):
     user = await message.client.get_user_dict(message.from_user.id)
-    heckerman = user['mention']
+    heckerman = user["mention"]
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
@@ -42,8 +42,10 @@ async def hack_func(message):
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
     ]
-    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To``` {heckerman}``` "
-              "To Remove This Hack```")
+    hecked = (
+        f"**Targeted Account Hacked**\n\n```Pay 69$ To``` {heckerman}``` "
+        "To Remove This Hack```"
+    )
     max_ani = len(animation_chars)
     for i in range(max_ani):
         await asyncio.sleep(2)

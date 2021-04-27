@@ -4,18 +4,22 @@
 
 import asyncio
 import os
-import qrcode
 
+import qrcode
 from bs4 import BeautifulSoup
 
-from userge import userge, Config, Message
+from userge import Config, Message, userge
 
 
-@userge.on_cmd("mkqr", about={
-    'header': "Returns Qr code of text or replied text",
-    'usage': "{tr}mkqr [text | reply to text msg]"})
+@userge.on_cmd(
+    "mkqr",
+    about={
+        "header": "Returns Qr code of text or replied text",
+        "usage": "{tr}mkqr [text | reply to text msg]",
+    },
+)
 async def make_qr(message: Message):
-    """ Make Qr code """
+    """Make Qr code"""
     replied = message.reply_to_message
     input_ = message.input_str
     if input_:
@@ -40,16 +44,20 @@ async def make_qr(message: Message):
     await userge.send_sticker(
         message.chat.id,
         "qrcode.webp",
-        reply_to_message_id=replied.message_id if replied else None
+        reply_to_message_id=replied.message_id if replied else None,
     )
     os.remove("qrcode.webp")
 
 
-@userge.on_cmd("getqr", about={
-    'header': "Get data of any qr code",
-    'usage': "{tr}getqr [Reply to qr code]"})
+@userge.on_cmd(
+    "getqr",
+    about={
+        "header": "Get data of any qr code",
+        "usage": "{tr}getqr [Reply to qr code]",
+    },
+)
 async def get_qr(message: Message):
-    """ Get Qr code data """
+    """Get Qr code data"""
     replied = message.reply_to_message
     if not (replied and replied.media and (replied.photo or replied.sticker)):
         await message.err("```reply to qr code to get data...```", del_in=5)
@@ -58,15 +66,16 @@ async def get_qr(message: Message):
         os.makedirs(Config.DOWN_PATH)
     await message.edit("```Downloading media to my local...```")
     down_load = await message.client.download_media(
-        message=replied,
-        file_name=Config.DOWN_PATH
+        message=replied, file_name=Config.DOWN_PATH
     )
     await message.edit("```Processing your QR Code...```")
     cmd = [
         "curl",
-        "-X", "POST",
-        "-F", "f=@" + down_load + "",
-        "https://zxing.org/w/decode"
+        "-X",
+        "POST",
+        "-F",
+        "f=@" + down_load + "",
+        "https://zxing.org/w/decode",
     ]
     process = await asyncio.create_subprocess_exec(
         *cmd,

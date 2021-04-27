@@ -1,20 +1,27 @@
-from urllib import parse
 from random import choice
+from urllib import parse
+
 import aiohttp
 
-from userge import userge, Message
+from userge import Message, userge
 
 
-@userge.on_cmd("pat", about={
-    'header': "Give head Pat xD",
-    'flags': {'-g': "For Pat Gifs"},
-    'usage': "{tr}pat [reply | username]\n{tr}pat -g [reply]"})
+@userge.on_cmd(
+    "pat",
+    about={
+        "header": "Give head Pat xD",
+        "flags": {"-g": "For Pat Gifs"},
+        "usage": "{tr}pat [reply | username]\n{tr}pat -g [reply]",
+    },
+)
 async def pat(message: Message):
     username = message.filtered_input_str
     reply = message.reply_to_message
     reply_id = reply.message_id if reply else message.message_id
     if not username and not reply:
-        await message.edit("**Bruh** ~`Reply to a message or provide username`", del_in=3)
+        await message.edit(
+            "**Bruh** ~`Reply to a message or provide username`", del_in=3
+        )
         return
     kwargs = {"reply_to_message_id": reply_id, "caption": username}
 

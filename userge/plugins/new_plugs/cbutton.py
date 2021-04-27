@@ -2,22 +2,27 @@
 
 # By @Krishna_Singhal
 
-from pyrogram.errors import UserIsBot, BadRequest
+from pyrogram.errors import BadRequest, UserIsBot
 
-from userge import userge, Config, Message
-from userge.utils import parse_buttons as pb, get_file_id_of_media
+from userge import Config, Message, userge
+from userge.utils import get_file_id_of_media
+from userge.utils import parse_buttons as pb
 
 
-@userge.on_cmd("cbutton", about={
-    'header': "Create buttons Using bot",
-    'description': "First Create a Bot via @Botfather and "
-                   "Add bot token To Config Vars",
-    'usage': "{tr}cbutton [reply to button msg]",
-    'buttons': "<code>[name][buttonurl:link]</code> - <b>add a url button</b>\n"
-               "<code>[name][buttonurl:link:same]</code> - "
-               "<b>add a url button to same row</b>"})
+@userge.on_cmd(
+    "cbutton",
+    about={
+        "header": "Create buttons Using bot",
+        "description": "First Create a Bot via @Botfather and "
+        "Add bot token To Config Vars",
+        "usage": "{tr}cbutton [reply to button msg]",
+        "buttons": "<code>[name][buttonurl:link]</code> - <b>add a url button</b>\n"
+        "<code>[name][buttonurl:link:same]</code> - "
+        "<b>add a url button to same row</b>",
+    },
+)
 async def create_button(msg: Message):
-    """ Create Buttons Using Bot """
+    """Create Buttons Using Bot"""
     if Config.BOT_TOKEN is None:
         await msg.err("First Create a Bot via @Botfather to Create Buttons...")
         return
@@ -46,13 +51,15 @@ async def create_button(msg: Message):
                 file_id=file_id,
                 caption=text,
                 reply_to_message_id=message_id,
-                reply_markup=markup)
+                reply_markup=markup,
+            )
         else:
             await client.send_message(
                 chat_id=msg.chat.id,
                 text=text,
                 reply_to_message_id=message_id,
-                reply_markup=markup)
+                reply_markup=markup,
+            )
     except UserIsBot:
         await msg.err("oops, your Bot is not here to send Msg!")
     except BadRequest:

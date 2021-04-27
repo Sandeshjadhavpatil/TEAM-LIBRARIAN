@@ -3,22 +3,26 @@
 # By @Krishna_Singhal
 
 import os
-import requests
 
+import requests
 from PIL import Image
 from validators.url import url
 
+from userge import Config, Message, userge
 from userge.utils import demojify
-from userge import userge, Config, Message
 
 CONVERTED_IMG = Config.DOWN_PATH + "img.png"
 
 
-@userge.on_cmd("trump", about={
-    'header': "Custom Sticker of Trump Tweet",
-    'usage': "{tr}trump [text | reply to text]"})
+@userge.on_cmd(
+    "trump",
+    about={
+        "header": "Custom Sticker of Trump Tweet",
+        "usage": "{tr}trump [text | reply to text]",
+    },
+)
 async def trump_tweet(msg: Message):
-    """ Fun sticker of Trump Tweet """
+    """Fun sticker of Trump Tweet"""
     replied = msg.reply_to_message
     text = msg.input_str
     if replied and not text:
@@ -30,11 +34,15 @@ async def trump_tweet(msg: Message):
     await _tweets(msg, text, type_="trumptweet")
 
 
-@userge.on_cmd("modi", about={
-    'header': "Custom Sticker of Modi Tweet",
-    'usage': "{tr}modi [text | reply to text]"})
+@userge.on_cmd(
+    "modi",
+    about={
+        "header": "Custom Sticker of Modi Tweet",
+        "usage": "{tr}modi [text | reply to text]",
+    },
+)
 async def modi_tweet(msg: Message):
-    """ Fun Sticker of Modi Tweet """
+    """Fun Sticker of Modi Tweet"""
     replied = msg.reply_to_message
     text = msg.input_str
     if replied and not text:
@@ -46,11 +54,15 @@ async def modi_tweet(msg: Message):
     await _tweets(msg, text, "narendramodi")
 
 
-@userge.on_cmd("cmm", about={
-    'header': "Custom Sticker of Change My Mind",
-    'usage': "{tr}cmm [text | reply to text]"})
+@userge.on_cmd(
+    "cmm",
+    about={
+        "header": "Custom Sticker of Change My Mind",
+        "usage": "{tr}cmm [text | reply to text]",
+    },
+)
 async def Change_My_Mind(msg: Message):
-    """ Custom Sticker or Banner of Change My Mind """
+    """Custom Sticker or Banner of Change My Mind"""
     replied = msg.reply_to_message
     text = msg.input_str
     if replied and not text:
@@ -62,11 +74,15 @@ async def Change_My_Mind(msg: Message):
     await _tweets(msg, text, type_="changemymind")
 
 
-@userge.on_cmd("kanna", about={
-    'header': "Custom text Sticker of kanna",
-    'usage': "{tr}kanna [text | reply to text]"})
+@userge.on_cmd(
+    "kanna",
+    about={
+        "header": "Custom text Sticker of kanna",
+        "usage": "{tr}kanna [text | reply to text]",
+    },
+)
 async def kanna(msg: Message):
-    """ Fun sticker of Kanna """
+    """Fun sticker of Kanna"""
     replied = msg.reply_to_message
     text = msg.input_str
     if replied and not text:
@@ -78,11 +94,15 @@ async def kanna(msg: Message):
     await _tweets(msg, text, type_="kannagen")
 
 
-@userge.on_cmd("carry", about={
-    'header': "Custom text Sticker of Carryminati",
-    'usage': "{tr}carry [text | reply to text]"})
+@userge.on_cmd(
+    "carry",
+    about={
+        "header": "Custom text Sticker of Carryminati",
+        "usage": "{tr}carry [text | reply to text]",
+    },
+)
 async def carry_minati(msg: Message):
-    """ Fun Sticker of Carryminati Tweet """
+    """Fun Sticker of Carryminati Tweet"""
     replied = msg.reply_to_message
     text = msg.input_str
     if replied and not text:
@@ -94,13 +114,17 @@ async def carry_minati(msg: Message):
     await _tweets(msg, text, "carryminati")
 
 
-@userge.on_cmd("tweet", about={
-    'header': "Tweet With Custom text Sticker",
-    'usage': "{tr}tweet username text\n"
-             "{tr}tweet text [reply to user]\n"
-             "{tr}tweet [reply]"})
+@userge.on_cmd(
+    "tweet",
+    about={
+        "header": "Tweet With Custom text Sticker",
+        "usage": "{tr}tweet username text\n"
+        "{tr}tweet text [reply to user]\n"
+        "{tr}tweet [reply]",
+    },
+)
 async def tweet(msg: Message):
-    """ Create Tweets of given celebrities """
+    """Create Tweets of given celebrities"""
     username, text = msg.extract_user_and_text
     if not (username or text):
         await msg.err("`input not found!`")
@@ -109,7 +133,9 @@ async def tweet(msg: Message):
     await _tweets(msg, text, username)
 
 
-async def _tweets(msg: Message, text: str, username: str = '', type_: str = "tweet") -> None:
+async def _tweets(
+    msg: Message, text: str, username: str = "", type_: str = "tweet"
+) -> None:
     api_url = f"https://nekobot.xyz/api/imagegen?type={type_}&text={demojify(text)}"
     if username:
         api_url += f"&username={demojify(username)}"
@@ -125,8 +151,8 @@ async def _tweets(msg: Message, text: str, username: str = '', type_: str = "twe
     img.save(CONVERTED_IMG)
     await msg.delete()
     msg_id = msg.reply_to_message.message_id if msg.reply_to_message else None
-    await msg.client.send_photo(chat_id=msg.chat.id,
-                                photo=CONVERTED_IMG,
-                                reply_to_message_id=msg_id)
+    await msg.client.send_photo(
+        chat_id=msg.chat.id, photo=CONVERTED_IMG, reply_to_message_id=msg_id
+    )
     os.remove(tmp_file)
     os.remove(CONVERTED_IMG)

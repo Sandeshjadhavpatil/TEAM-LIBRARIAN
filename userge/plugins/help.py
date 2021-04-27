@@ -58,7 +58,9 @@ _CATEGORY = {
 SAVED_SETTINGS = get_collection("CONFIGS")
 REPO_X = InlineQueryResultArticle(
     title="Repo",
-    input_message_content=InputTextMessageContent("**「 Here's how to setup Your Own 」** "),
+    input_message_content=InputTextMessageContent(
+        "**「 Here's how to setup Your Own 」** "
+    ),
     url="https://github.com/PURHSHOTTAM",
     description="Setup Your Own",
     thumb_url="https://telegra.ph/file/29bbbae5dec999fa986a0.png",
@@ -1139,7 +1141,9 @@ if userge.has_bot:
 
             MAIN_MENU = InlineQueryResultArticle(
                 title="Main Menu",
-                input_message_content=InputTextMessageContent(" [🎛 𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔🎛](https://telegra.ph/file/29bbbae5dec999fa986a0.png) Hᴇʏᴀ Usᴇʀ Yᴏᴜ Cᴀɴ Eᴀsɪʟʏ Usᴇ ᴍᴇ ʙʏ ᴛᴡᴏ ᴡᴀʏs 1sᴛ ʙʏ Lɪsᴛ ᴍᴇɴᴜ Aɴᴅ 2ɴᴅ Bʏ Iɴʟɪɴᴇ Bᴜᴛᴛᴏɴs ʟɪᴋᴇ ᴛʜᴀᴛ☟︎︎︎..sᴏ Jᴜsᴛ sᴇᴀʀᴄʜ sᴇᴄᴛɪᴏɴ ᴡɪsᴇ ᴀɴᴅ ɢᴇᴛ ɪɴꜰᴏ ᴀʙᴏᴜᴛ ᴍʏ ᴀʟʟ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ʜᴏᴡ ɪᴛ ᴡᴏʀᴋs ᴀɴᴅ ᴇɴᴊᴏʏ 😻𝗨 "),
+                input_message_content=InputTextMessageContent(
+                    " [🎛 𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔🎛](https://telegra.ph/file/29bbbae5dec999fa986a0.png) Hᴇʏᴀ Usᴇʀ Yᴏᴜ Cᴀɴ Eᴀsɪʟʏ Usᴇ ᴍᴇ ʙʏ ᴛᴡᴏ ᴡᴀʏs 1sᴛ ʙʏ Lɪsᴛ ᴍᴇɴᴜ Aɴᴅ 2ɴᴅ Bʏ Iɴʟɪɴᴇ Bᴜᴛᴛᴏɴs ʟɪᴋᴇ ᴛʜᴀᴛ☟︎︎︎..sᴏ Jᴜsᴛ sᴇᴀʀᴄʜ sᴇᴄᴛɪᴏɴ ᴡɪsᴇ ᴀɴᴅ ɢᴇᴛ ɪɴꜰᴏ ᴀʙᴏᴜᴛ ᴍʏ ᴀʟʟ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ʜᴏᴡ ɪᴛ ᴡᴏʀᴋs ᴀɴᴅ ᴇɴᴊᴏʏ 😻𝗨 "
+                ),
                 url="https://github.com/PURUSHOTTAM",
                 description="🎛𝐖𝐡𝐢𝐭𝐞 𝐓𝐢𝐠𝐞𝐫'𝐬 𝐌𝐚𝐢𝐧 𝐌𝐞𝐧𝐮 🎛",
                 thumb_url="https://telegra.ph/file/b360d3ca40e19e78b68c8.jpg",

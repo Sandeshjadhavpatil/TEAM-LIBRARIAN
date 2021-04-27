@@ -194,9 +194,11 @@ My Master is : {owner_.flname}</b>
                 if owner_.uname
                 else f"tg://user?id={owner_.id}"
             )
-            btns =[
+            btns = [
                 [
-                    InlineKeyboardButton("「✧TEAM LIBRARIAN✧」" ,url="https://t.me/Team_Librarian"),
+                    InlineKeyboardButton(
+                        "「✧TEAM LIBRARIAN✧」", url="https://t.me/Team_Librarian"
+                    ),
                     InlineKeyboardButton("「✧SPURCE✧」", url=Config.UPSTREAM_REPO),
                 ]
             ]

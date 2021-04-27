@@ -3,18 +3,21 @@ from asyncio import sleep
 
 from newspaper import Article, ArticleException
 
-from userge import userge, Message
+from userge import Message, userge
 
-regex: str = r'(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.' \
-             r'[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*))'
+regex: str = (
+    r"(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\."
+    r"[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*))"
+)
 max_chars = 3900
 
 
-@userge.on_cmd("con", about={
-    'header': "Scrap article content",
-    'usage': "{tr}con [link | reply to msg]"})
+@userge.on_cmd(
+    "con",
+    about={"header": "Scrap article content", "usage": "{tr}con [link | reply to msg]"},
+)
 async def con_(message: Message):
-    """ Articles Scraper """
+    """Articles Scraper"""
     text = message.input_str
     if message.reply_to_message:
         text = message.reply_to_message.text
@@ -29,7 +32,10 @@ async def con_(message: Message):
         # split article content into chunks
         # credits to https://github.com/eternnoir/pyTelegramBotAPI/blob/
         # 2dec4f1ffc3f7842844e747b388edf0d6560a5b6/telebot/util.py#L224
-        chunks = [article.text[i:i + max_chars] for i in range(0, len(article.text), max_chars)]
+        chunks = [
+            article.text[i : i + max_chars]
+            for i in range(0, len(article.text), max_chars)
+        ]
         header = f"**{article.title}**\n{article.publish_date}\n\n"
         if len(chunks) == 1:
             await message.edit(header + article.text)

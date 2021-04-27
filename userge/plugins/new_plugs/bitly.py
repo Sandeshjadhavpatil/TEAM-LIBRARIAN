@@ -3,15 +3,20 @@
 # By @Krishna_Singhal
 
 import gdshortener
-
 from pyrogram.errors import YouBlockedUser
-from userge import userge, Message
+
+from userge import Message, userge
 from userge.utils.exceptions import StopConversation
 
 
-@userge.on_cmd("bitly", about={
-    'header': "Shorten Any Url using bit.ly",
-    'usage': "{tr}bitly [link or reply]"}, allow_via_bot=False)
+@userge.on_cmd(
+    "bitly",
+    about={
+        "header": "Shorten Any Url using bit.ly",
+        "usage": "{tr}bitly [link or reply]",
+    },
+    allow_via_bot=False,
+)
 async def bitly(msg: Message):
     url = msg.input_or_reply_str
     if not url:
@@ -22,9 +27,9 @@ async def bitly(msg: Message):
             await conv.send_message("/start")
             await conv.get_response(mark_read=True)
             await conv.send_message(url)
-            shorten_url = (
-                await conv.get_response(mark_read=True)
-            ).text.split('\n', maxsplit=1)[-1]
+            shorten_url = (await conv.get_response(mark_read=True)).text.split(
+                "\n", maxsplit=1
+            )[-1]
             await msg.edit(f"`{shorten_url}`", disable_web_page_preview=True)
     except YouBlockedUser:
         await msg.edit("unblock **@Sl_BitlyBot** to shorten URLs.")
@@ -32,9 +37,13 @@ async def bitly(msg: Message):
         await msg.err("bot is down")
 
 
-@userge.on_cmd("isgd", about={
-    'header': "Shorten Any Url using is.gd",
-    'usage': "{tr}isgd [link or reply]"})
+@userge.on_cmd(
+    "isgd",
+    about={
+        "header": "Shorten Any Url using is.gd",
+        "usage": "{tr}isgd [link or reply]",
+    },
+)
 async def is_gd(msg: Message):
     url = msg.input_or_reply_str
     if not url:
@@ -48,13 +57,17 @@ async def is_gd(msg: Message):
     else:
         await msg.edit(
             f"**Shortened URL:**\n`{s_url}`\n\n**Stats:** `{stats}`",
-            disable_web_page_preview=True
+            disable_web_page_preview=True,
         )
 
 
-@userge.on_cmd("statsisgd", about={
-    'header': "Convert is.gd url into original URl.",
-    'usage': "{tr}statsisgd [link or reply]"})
+@userge.on_cmd(
+    "statsisgd",
+    about={
+        "header": "Convert is.gd url into original URl.",
+        "usage": "{tr}statsisgd [link or reply]",
+    },
+)
 async def stats_is_gd(msg: Message):
     url = msg.input_or_reply_str
     if not url:
@@ -66,7 +79,4 @@ async def stats_is_gd(msg: Message):
     except Exception as er:
         await msg.err(str(er))
     else:
-        await msg.edit(
-            f"**URL:** `{original_url}`",
-            disable_web_page_preview=True
-        )
+        await msg.edit(f"**URL:** `{original_url}`", disable_web_page_preview=True)

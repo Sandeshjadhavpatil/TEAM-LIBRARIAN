@@ -1,28 +1,32 @@
+import asyncio
 import os
 import random
-import asyncio
 
 from hachoir.metadata import extractMetadata as XMan
 from hachoir.parser import createParser as CPR
 
-from userge import userge, Message, Config
-from userge.utils import take_screen_shot, progress
+from userge import Config, Message, userge
+from userge.utils import progress, take_screen_shot
 
 
-@userge.on_cmd("genss", about={
-    'header': "Screen Shot Generator",
-    'description': "Generate Random Screen Shots from any video "
-                   " **[NOTE: If no frame count is passed, default"
-                   " value for number of ss is 5. ",
-    'usage': "{tr}genss [No of SS] (optional) as reply to Video"})
+@userge.on_cmd(
+    "genss",
+    about={
+        "header": "Screen Shot Generator",
+        "description": "Generate Random Screen Shots from any video "
+        " **[NOTE: If no frame count is passed, default"
+        " value for number of ss is 5. ",
+        "usage": "{tr}genss [No of SS] (optional) as reply to Video",
+    },
+)
 async def ss_gen(message: Message):
     replied = message.reply_to_message
-    vid_loc = ''
+    vid_loc = ""
     ss_c = 5
     should_clean = False
     await message.edit("Checking you Input?🧐🤔😳")
     if message.input_str:
-        if '|' in message.input_str:
+        if "|" in message.input_str:
             ss_c, vid_loc = message.input_str.split("|")
         elif len(message.input_str.split()) == 1:
             try:
@@ -40,7 +44,7 @@ async def ss_gen(message: Message):
             message=replied,
             file_name=Config.DOWN_PATH,
             progress=progress,
-            progress_args=(message, "Downloading🧐? W8 plox")
+            progress_args=(message, "Downloading🧐? W8 plox"),
         )
         vid_loc = os.path.join(Config.DOWN_PATH, os.path.basename(vid))
         should_clean = True

@@ -7,39 +7,48 @@ import re
 
 import requests
 
-from userge import userge, Message, pool
+from userge import Message, pool, userge
 
 
-@userge.on_cmd("zippy", about={
-    'header': "generate Direct link of zippyshare url",
-    'usage': "{tr}zippy : [Zippyshare Link ]",
-    'examples': "{tr}zippy https://www10.zippyshare.com/v/dyh988sh/file.html"}, del_pre=True)
+@userge.on_cmd(
+    "zippy",
+    about={
+        "header": "generate Direct link of zippyshare url",
+        "usage": "{tr}zippy : [Zippyshare Link ]",
+        "examples": "{tr}zippy https://www10.zippyshare.com/v/dyh988sh/file.html",
+    },
+    del_pre=True,
+)
 async def zippyshare(message: Message):
-    """ zippy to direct """
+    """zippy to direct"""
     url = message.input_str
     await message.edit("`Generating url ....`")
     try:
         direct_url, fname = await _generate_zippylink(url)
-        await message.edit(f"**Original** : {url}\n**FileName** : `{fname}`\n"
-                           f"**DirectLink** : {direct_url}\n\n"
-                           "**[HINT]** : use `.download [directLink]`",
-                           disable_web_page_preview=True)
+        await message.edit(
+            f"**Original** : {url}\n**FileName** : `{fname}`\n"
+            f"**DirectLink** : {direct_url}\n\n"
+            "**[HINT]** : use `.download [directLink]`",
+            disable_web_page_preview=True,
+        )
     except Exception as z_e:  # pylint: disable=broad-except
         await message.edit(f"`{z_e}`")
 
 
-_REGEX_LINK = r'https://www(\d{1,3}).zippyshare.com/v/(\w{8})/file.html'
+_REGEX_LINK = r"https://www(\d{1,3}).zippyshare.com/v/(\w{8})/file.html"
 _REGEX_RESULT = (
-    r'var a = (\d{6});\s+var b = (\d{6});\s+document\.getElementById'
+    r"var a = (\d{6});\s+var b = (\d{6});\s+document\.getElementById"
     r'\(\'dlbutton\'\).omg = "f";\s+if \(document.getElementById\(\''
-    r'dlbutton\'\).omg != \'f\'\) {\s+a = Math.ceil\(a/3\);\s+} else'
-    r' {\s+a = Math.floor\(a/3\);\s+}\s+document.getElementById\(\'d'
+    r"dlbutton\'\).omg != \'f\'\) {\s+a = Math.ceil\(a/3\);\s+} else"
+    r" {\s+a = Math.floor\(a/3\);\s+}\s+document.getElementById\(\'d"
     r'lbutton\'\).href = "/d/[a-zA-Z\d]{8}/\"\+\(a \+ \d{6}%b\)\+"/('
     r'[\w%-.]+)";'
 )
-_HEADERS = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome"
-                          "/75.0.3770.100 Safari/537.36"}
+_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome"
+    "/75.0.3770.100 Safari/537.36"
+}
 
 
 @pool.run_in_thread

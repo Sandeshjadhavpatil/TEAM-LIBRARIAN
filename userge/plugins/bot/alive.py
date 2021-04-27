@@ -253,7 +253,9 @@ class Bot_Alive:
                 InlineKeyboardButton(text="「✧SOURCE✧」", url=Config.UPSTREAM_REPO),
             ],
             [
-                InlineKeyboardButton(text="「✧TEAM LIBRARIAN✧」", url="https://t.me/Team_Librarian")
+                InlineKeyboardButton(
+                    text="「✧TEAM LIBRARIAN✧」", url="https://t.me/Team_Librarian"
+                )
             ],
         ]
         return InlineKeyboardMarkup(buttons)
