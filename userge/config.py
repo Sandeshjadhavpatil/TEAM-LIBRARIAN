@@ -72,6 +72,7 @@ class Config:
     G_DRIVE_PARENT_ID = os.environ.get("G_DRIVE_PARENT_ID")
     G_DRIVE_INDEX_LINK = os.environ.get("G_DRIVE_INDEX_LINK")
     GOOGLE_CHROME_DRIVER = os.environ.get("GOOGLE_CHROME_DRIVER")
+    GENIUS = os.environ.get("GENIUS"
     GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN")
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
