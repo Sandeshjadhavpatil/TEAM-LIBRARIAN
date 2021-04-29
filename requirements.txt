@@ -1,4 +1,8 @@
- 
+imutils
+numpy
+opencv-python
+PyPDF2
+scikit-image
 aiofiles>=0.6.0
 aiohttp[speedups]>=3.7.3
 asyncurban>=0.3.3
