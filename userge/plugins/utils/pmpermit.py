@@ -305,7 +305,7 @@ async def uninvitedPmHandler(message: Message):
             await message.reply(
                 noPmMessage.format_map(SafeDict(**user_dict))
                 + "**‣ Powered By Team**-**[Librarian](t.me/Team_Librarian)**"
-                + "**‣ Deploy your own** -**[Click](https://github.com/PURHSHOTTAM/TEAM-LIBRARIAN-PACK)**"
+                + "**‣ Deploy your own** -**[Click](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FPURHSHOTTAM%2FTEAM-LIBRARIAN&template=https%3A%2F%2Fgithub.com%2FPURHSHOTTAM%2FTEAM-LIBRARIAN-PACK)**"
             )
         ).message_id
         await asyncio.sleep(1)
