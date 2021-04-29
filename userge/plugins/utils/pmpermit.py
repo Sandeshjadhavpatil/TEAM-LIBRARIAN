@@ -24,11 +24,18 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-    "Hello {fname} this is an automated message\n"
-    "Please wait until you get approved to direct message "
-    "And please dont spam until then "
+     " 🦋 Hello Mr / Mrs. {mention}
+     " ✘ I m A Highly Alert Userbot\n"
+     " ✘ Visit [Team_Librarian](t.me/Team_Librarian)😇 
+     " ‣ @Team_Librarian 
+     " ‣ @Librarian_Official\n"
+     " 🔘 I'm Here For Security Purpose , So My Master Will Approve You Soon ❄️\n"
+     " 🦋 please Wait for reply 🦋 
+     " ✅ Thanks For Understanding\n"
+     "  ➥ {mention}\n"
+     "➖➖➖➖➖➖➖➖➖➖➖➖"
 )
-blocked_message = bk_blocked_message = "**You were automatically blocked**"
+blocked_message = bk_blocked_message = "**You were automatically blocked so you can also tag me on @Librarian_Institure😅**"
 
 
 async def _init() -> None:
@@ -295,7 +302,7 @@ async def uninvitedPmHandler(message: Message):
         PMPERMIT_MSG[message.from_user.id] = (
             await message.reply(
                 noPmMessage.format_map(SafeDict(**user_dict))
-                + "\n`- Protected by USERGE-X`"
+                + "These  Vip account is Protected By [Team Librarian's](t.me/Team_Librarian) Assistant"
             )
         ).message_id
         await asyncio.sleep(1)
