@@ -26,11 +26,11 @@ allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
      " 🦋 Hello Mr / Mrs. {mention}\n"
      " ✘ I m A Highly Alert Userbot\n"
-     " ✘ Visit [Team_Librarian](t.me/Team_Librarian)😇 
+     " ✘ Visit [Team_Librarian](t.me/Team_Librarian)😇\n" 
      " ‣ @Team_Librarian\n"
      " ‣ @Librarian_Official\n"
      " 🔘 I am Here For Security Purpose , So My Master Will Approve You Soon ❄️\n"
-     " 🦋 please Wait for reply 🦋 
+     " 🦋 please Wait for reply 🦋\n"
      " ✅ Thanks For Understanding\n"
      "  ➥ {mention}\n"
      "➖➖➖➖➖➖➖➖➖➖➖➖"
