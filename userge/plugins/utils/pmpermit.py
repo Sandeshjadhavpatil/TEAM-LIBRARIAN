@@ -304,7 +304,8 @@ async def uninvitedPmHandler(message: Message):
         PMPERMIT_MSG[message.from_user.id] = (
             await message.reply(
                 noPmMessage.format_map(SafeDict(**user_dict))
-                + "These  Vip account is Protected By [Team Librarian's](t.me/Team_Librarian) Assistant"
+                + "**‣ Powered By Team**-**[Librarian](t.me/Team_Librarian)**"
+                + "**‣ Deploy your own** -**[Click](https://github.com/PURHSHOTTAM/TEAM-LIBRARIAN-PACK)**"
             )
         ).message_id
         await asyncio.sleep(1)
