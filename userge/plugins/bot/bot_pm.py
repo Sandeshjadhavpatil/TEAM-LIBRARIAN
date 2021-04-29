@@ -1,4 +1,4 @@
-# Copyright (C) 2021 BY - GitHub.com/code-rgb [TG - @deleteduser420]
+# Copyright (C) mmm 2021 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
 """Module that handles Bot PM"""
