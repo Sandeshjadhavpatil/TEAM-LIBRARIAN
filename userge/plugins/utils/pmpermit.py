@@ -24,12 +24,12 @@ PMPERMIT_MSG = {}
 pmCounter: Dict[int, int] = {}
 allowAllFilter = filters.create(lambda _, __, ___: Config.ALLOW_ALL_PMS)
 noPmMessage = bk_noPmMessage = (
-     " 🦋 Hello Mr / Mrs. {mention}
+     " 🦋 Hello Mr / Mrs. {mention}\n"
      " ✘ I m A Highly Alert Userbot\n"
      " ✘ Visit [Team_Librarian](t.me/Team_Librarian)😇 
-     " ‣ @Team_Librarian 
+     " ‣ @Team_Librarian\n"
      " ‣ @Librarian_Official\n"
-     " 🔘 I'm Here For Security Purpose , So My Master Will Approve You Soon ❄️\n"
+     " 🔘 I am Here For Security Purpose , So My Master Will Approve You Soon ❄️\n"
      " 🦋 please Wait for reply 🦋 
      " ✅ Thanks For Understanding\n"
      "  ➥ {mention}\n"
